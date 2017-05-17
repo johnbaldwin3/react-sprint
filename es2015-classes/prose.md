@@ -217,7 +217,4 @@ You can see the static method still keeps the function `colorChange` locally, bu
 * Classes can easily make sub-classes and pass inheritance using the `extend` keyword and the `super` function.
 * The `super` function allows for a child object to inherit methods and properties from the parent object.
 * Classes are **NOT** hoisted, and therefore will throw a reference error if an instance is declared before the class.
-
-#### References
-
-[Resource links]
+* Using the `static` method allows the parent `class` to retain the method or property and not pass it directly down through prototypal inheritance.

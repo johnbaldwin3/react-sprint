@@ -28,6 +28,8 @@ It begins with a prototype object that is an **object** designed with a specific
 
 Because of the mutability of objects and the ability for any function (object) to be a constructor, we can create new instances of the prototype object that carry on the properties of the original object - while still allowing us to add new properties and methods or change and override inherited ones if necessary.
 
+![Prototype Fruits](./fruits.jpg)
+
 #### Inheritance in Action...
 Let's take a look at a constructor function called `Fruit`.
 ```js
