@@ -8,9 +8,11 @@ Think of the food chain you may have learned about in Biology class. Sitting at 
 A prototype in JavaScript begins when any new function is created. JavaScript has a built in Object constructor that by default passes its prototypes to any new functions.
 
 If you were to do the following, you can see what JavaScript has pre-baked into its Object constructor.
+
 ```js
 console.log(Object());
 ```
+
 The above snippet would render a breakdown of the available properties and methods on the JavaScript Object.
 
 ![Object](./object.png)
@@ -86,7 +88,7 @@ console.log('apple.sweet', apple.sweet);
 ```
 The reason that `apple` is crunchy *stems* from the fact that it inherited crunchy from the `Apple` constructor when the `var apple = new Apple();` was instantiated. However, it would have been impossible without prototypal inheritance for `apple` to also be sweet without the declaration of `Apple.prototype = new Fruit();`.
 
- We can also learned that properties and methods can be overridden, so we see that `grape` returns `false` for the `hasSeeds` property because we gave the `Grape` constructor a property of being seedless.
+ We also learned that properties and methods can be overridden, so we see that `grape` returns `false` for the `hasSeeds` property because we gave the `Grape` constructor a property of being seedless.
 
  #### Is that the only way? Nope!
 
@@ -111,18 +113,17 @@ The reason that `apple` is crunchy *stems* from the fact that it inherited crunc
  Behind the scenes when the `child.sayName()` is invoked, the `child` object is first examined for the `sayName()` function, when the function is not found there, JavaScript searches up the prototypal chain and the next stop is the `parent` object, at which point `sayName()` is found. `sayName()` then runs on the child element, using the name property from the `child` object where it was called.
 
  Interestingly, you can see the prototype chain being travelled in the following example as the `sayName()` method travels up the chain in search of a name value. Since `grandChild` does not posses a `name:` property, it goes up the chain until it finds one, which happens to be from the `child` object.
- ```js
 
+ ```js
  var grandChild = Object.create(child);
 
  grandChild.sayName();
  //output => "ChildPerson"
-
  ```
 
 #### Let's see it out in the wild...
 Below is the code from above in runnable examples. Take a few minutes to run the code and play around with prototypal inheritance.
-```js runnable
+```js
 function Fruit() {
   this.sweet = true;
   this.hasSeeds = true;
@@ -157,9 +158,9 @@ console.log('apple.sweet', apple.sweet);
 
 ```
 
-#### And here is the example using `Object.create()`, test the waters and see what happens with `null` being passed in to the function too.
+And here is the example using `Object.create()`, test the waters and see what happens with `null` being passed in to the function too.
 
-```js runnable
+```js
 
 var parent = {
   sayName: function() {
@@ -186,8 +187,7 @@ grandChild.sayName();
 
 
 #### References
-  [Object Playground](http://www.objectplayground.com/)
 
-  [Crockford's JavaScript](http://javascript.crockford.com/prototypal.html)
-
-  [Stack Overflow Discussion](http://stackoverflow.com/questions/4166616/understanding-the-difference-between-object-create-and-new-somefunction)
+  - [Object Playground](http://www.objectplayground.com/)
+  - [Crockford's JavaScript](http://javascript.crockford.com/prototypal.html)
+  - [Stack Overflow Discussion](http://stackoverflow.com/questions/4166616/understanding-the-difference-between-object-create-and-new-somefunction)
