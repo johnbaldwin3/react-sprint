@@ -1,8 +1,14 @@
 ##  Prototypal Inheritance
 
+  Prototypal inheritance is a very powerful tool in JavaScript that allows us to pass methods and properties between objects and constructors. This saves us time and increases our efficiency in DRY programming. The ability to write methods and properties only once and call upon them from multiple objects is one of the great features of JavaScript's object oriented programming.
+
   All functions in JavaScript have prototypes, though some just remain undefined. The prototypes of an object allow new objects to inherit properties in a hierarchal fashion from other objects. This transfer of methods and properties between multiple objects can be referred to as Prototypal Inheritance, Prototype-Based Inheritance, or Delegation.
 
-### It all starts with the Object
+### Picture this!
+
+
+
+### It all starts with the Object, well really the [Object object]...
  In JavaScript all Objects are created with methods and properties right out of the gate. All new objects inherit these properties from the JavaScript Object.
 
  Fun things like `Object.prototype.toString()` or `Object.prototype.valueOf()` are just a few of the goodies that come pre-packaged on the prototype of the JavaScript Object.
@@ -52,7 +58,7 @@ console.log('Apple.prototype:', Apple.prototype);
   console.log('apple.sweet', apple.sweet);
   //output => 'apple.sweet: true'
   ```
-  The reason that `apple` is crunchy *stems* from the fact that it inherited crunchy from the `Apple` constructor when the `var apple = new Apple();` was instantiated. But what would have been impossible without prototypal inheritance was for `apple` to also be sweet without the declaration of `Apple.prototype = new Fruit();`
+  The reason that `apple` is crunchy *stems* from the fact that it inherited crunchy from the `Apple` constructor when the `var apple = new Apple();` was instantiated. However, it would have been impossible without prototypal inheritance for `apple` to also be sweet without the declaration of `Apple.prototype = new Fruit();`
 
   #### Is that the only way? Nope!
 
@@ -76,5 +82,14 @@ console.log('Apple.prototype:', Apple.prototype);
 #### What's really happening here?
   Behind the scenes when the `child.sayName()` is invoked, the `child` object is first examined for the `sayName()` function, when the function is not found there, JavaScript searches up the prototypal chain and the next stop is the `parent` object, at which point `sayName()` is found. `sayName()` then runs on the child element, using the name property from the `child` object where it was called.
 
+  Interestingly, you can see the prototype chain being travelled in the following example as the `sayName()` method travels up the chain in search of a name value. Since `grandChild` does not posses a `name:` property, it goes up the chain until it finds one, which happens to be from the `child` object.
+```js
+
+ var grandChild = Object.create(child);
+
+ grandChild.sayName();
+ //output => "PersonChild"
+
+```
 ### Conclusion
- Prototypal inheritance is a very powerful tool in JavaScript that allows us to pass methods and properties between object constructors.
+ Prototypal inheritance is a very powerful tool in JavaScript that allows us to pass methods and properties between objects and constructors. This saves us time and increases our efficiency in DRY programming. The ability to write methods and properties only once and call upon them from multiple objects is one of the great features of JavaScript's object oriented programming.
