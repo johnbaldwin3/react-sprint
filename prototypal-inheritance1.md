@@ -101,11 +101,11 @@ The reason that `apple` is crunchy *stems* from the fact that it inherited crunc
  }
 
  var child = Object.create(parent);
- child.name = "PersonChild";
+ child.name = "ChildPerson";
 
  //Because of inheritance . . .
  child.sayName();
- //console.log output => "PersonChild"
+ //console.log output => "ChildPerson"
  ```
  #### What's really happening here?
  Behind the scenes when the `child.sayName()` is invoked, the `child` object is first examined for the `sayName()` function, when the function is not found there, JavaScript searches up the prototypal chain and the next stop is the `parent` object, at which point `sayName()` is found. `sayName()` then runs on the child element, using the name property from the `child` object where it was called.
@@ -116,9 +116,68 @@ The reason that `apple` is crunchy *stems* from the fact that it inherited crunc
  var grandChild = Object.create(child);
 
  grandChild.sayName();
- //output => "PersonChild"
+ //output => "ChildPerson"
 
  ```
+
+#### Let's see it out in the wild...
+Below is the code from above in runnable examples. Take a few minutes to run the code and play around with prototypal inheritance.
+```js runnable
+function Fruit() {
+  this.sweet = true;
+  this.hasSeeds = true;
+}
+
+function Apple() {
+  this.texture = 'crunchy';
+}
+
+function Pear() {
+  this.texture = 'weirdly crunchy and soft simultaneously';
+}
+
+function Grape() {
+  this.hasSeeds = false;
+}
+
+Apple.prototype = new Fruit();
+
+console.log('Apple.prototype:', Apple.prototype);
+
+console.log(Apple.prototype.valueOf());
+
+var apple = new Apple();
+var pear = new Pear();
+var grape = new Grape();
+
+console.log('apple.texture:', apple.texture);
+console.log('pear.texture:', pear.texture);
+console.log('grape.hasSeeds:', grape.hasSeeds);
+console.log('apple.sweet', apple.sweet);
+
+```
+
+#### And here is the example using `Object.create()`, test the waters and see what happens with `null` being passed in to the function too.
+
+```js runnable
+
+var parent = {
+  sayName: function() {
+    console.log('Hey my name is ' + this.name);
+  },
+  name: 'ParentPerson'
+}
+
+var child = Object.create(parent);
+child.name = "ChildPerson";
+
+child.sayName();
+
+var grandChild = Object.create(child);
+
+grandChild.sayName();
+
+```
 ### Conclusion
   * We learned that properties and methods can be passed down the prototype chain and inherited by their children functions.
   * We know that you can override inheritance when it is necessary to do so, allowing us to blanket much of an objects properties with generalized statements, but make them more specific when needed.
@@ -127,6 +186,8 @@ The reason that `apple` is crunchy *stems* from the fact that it inherited crunc
 
 
 #### References
-  [Object Playground]: (http://www.objectplayground.com/)
-  [Crockford's JavaScript]: (http://javascript.crockford.com/prototypal.html)
-  [Stack Overflow Discussion]: (http://stackoverflow.com/questions/4166616/understanding-the-difference-between-object-create-and-new-somefunction)
+  [Object Playground](http://www.objectplayground.com/)
+
+  [Crockford's JavaScript](http://javascript.crockford.com/prototypal.html)
+
+  [Stack Overflow Discussion](http://stackoverflow.com/questions/4166616/understanding-the-difference-between-object-create-and-new-somefunction)
