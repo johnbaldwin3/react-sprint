@@ -47,4 +47,4 @@ Now any styling should be done inside of the ".scss" document, which will be ren
 
 #### References
 
-* [Sass](http://sass-lang.com/guide)
+* [Sass: Getting Started](http://sass-lang.com/guide)
