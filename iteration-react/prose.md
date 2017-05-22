@@ -112,6 +112,7 @@ The resulting product is pretty amazing, React renders each scientist in it's ow
 * React is able to `map` over arrays and render elements for each part of the array we wish to include.
 * The `key` attribute is the means that React uses to keep track of each rendered element when mapping over an array.
 * The `key` attribute is extremely import and React would not be able to monitor changes to the DOM properly without it.
+* Iterations in React can also be commonly seen using `<ul>`, `<ol>`, and `<li>` elements.
 * JavaScript is placed within `{}` when using JSX.
 * The return statement from our map function can still only return one container.
 * The variable in which the map function was stored can then be used to render inside of the return statement for the component. i.e. (`{famedPhysicists}`)
