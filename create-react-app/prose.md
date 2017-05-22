@@ -253,7 +253,7 @@ Also, any normally single line tags, such as `<img >` and `<input >` must become
 
 So, now let's see what our app would like in JSX:
 
-```jsx
+```js
 class App extends Component {
   render() {
     return (
@@ -299,7 +299,15 @@ export default App;
 
 ```
 
+There is plenty more to discuss about React, but for now, these are the basics to get a project up and running. By exporting our App and then importing into our index.js, we can see the power that React has to start making truly smart software that only renders on one HTML page.
+
 ### Conclusion
-[Summary of content covered]
+* 'create-react-app' is easily installed with the `npm install -g create-react-app` command.
+* To get a project started, simply use the `create-react-app my-app-folder-name` command (naming the folder whatever you want for your project)
+* After naming the folder, use the `cd my-app-folder-name` command to change into that directory.
+* Use `npm start` to start up your development server to watch for changes and render your application to view while you work on it.
+* React most commonly uses JSX language to take the place of HTML and all React components will be rendered in a singular <div> on your index.html page.
+* JSX requires camelCasing and special words to take place for reserved words such as "`class`" and "`for`" in JavaScript. These examples would be replaced by "`className`" and "`htmlFor`".
+
 #### References
-[Resource links]
+[React Docs](https://facebook.github.io/react/docs/hello-world.html)
