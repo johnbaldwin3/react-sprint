@@ -89,7 +89,215 @@ So we have a very high-altitude overview of what React does, but how do we React
 Yes, you heard it correctly. The rest of our project is going to be made up of components and JavaScript. The components are written in the language of "JSX", which is "XML" syntax combined with JavaScript. It should be noted that you can most certainly use pure JavaScript to create components, but most developers agree that JSX makes the project much more streamlined, elegant, and prevents us from directly incorporating pure HTML into our JavaScript files.
 
 #### Super Cool App
-For the sake of keeping it simple and trying to grasp what's happening 
+For the sake of keeping it simple and trying to grasp what's happening we are going to create a less than awesome website that will have zero functionality at this point. What we will focus on is the translation of HTML into JavaScript and how we tackle getting started with our 'create-react-app' format. So let's first look at some less than stellar HTML below. This is the beginnings of an application that allows you to input your favorite Bill Murray movie and will display something about it depending on what the input was.
+
+So here's the HTML, nothing fancy, just what you would expect to see on your "index.html" file... (also for keeping it short, we will just examine the body of the HTML document)
+
+```HTML
+<body>
+    <nav class="navbar">
+      <h1 class="title">Favorite Murray</h1>
+    </nav>
+    <main class="main-body">
+      <div class="top">
+        <div class="image-one">
+          <img src="https://www.fillmurray.com/200/300" alt="Fill Murray Pictures">
+        </div>
+        <p class="top-paragraph">
+          Lorem ipsum dolor sit amet, consectetur adipisicing.
+        </p>
+      </div>
+      <div class="bottom">
+        <div class="image-two">
+          <img src="https://www.fillmurray.com/300/300" alt="Fill Murray Pictures">
+        </div>
+        <p class="bottom-paragraph">
+          Lorem ipsum dolor sit amet, consectetur adipisicing.
+        </p>
+      </div>
+    </main>
+    <div class="murrayinator">
+      <h3>What's your favorite Murray Movie?</h3>
+      <form class="murray-form" action="" method="">
+        <label for="murray-movie">Type your favorite movie here...</label>
+        <input type="text" id="murray-movie">
+        <button>Submit</button>
+      </form>
+    </div>
+    <div class="answer">
+      <h4 class="murray-display"></h4>
+    </div>
+    <script src="js/bundle.js"></script>
+  </body>
+```
+
+### A look at the 'create-react-app' set up and writing JSX
+After our install, we have a set up structure as seen in the folder layout from earlier. We are primarily going to be concerned with 3 parts in order to create a React application. We will not be styling anything for this cool app, so the three documents we need to take a look at are:
+
+1. public/index.html
+1. src/index.js
+1. src/App.js
+
+
+#### public/index.html
+This will be short and sweet... the only portion of concern for us with HTML moving forward is the `<div></div>` in which our application will be inserted. 'Create-react-app' has already provided us with some HTML to get started and given us the following <div>:
+
+```HTML
+<div id="root"></div>
+```
+
+That's really all we need to know about this page, we will not write anything else in this document, but just know this is where the magic happens.
+
+#### src/index.js
+This is our main JavaScript file. Inside of this page you will see very little written already by our 'create-react-app' set up. We will also not touch this page further, but let's examine what's going on here.
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+import './index.css';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
+```
+
+There 5 `import` statements at the top of this page, we are only going to discuss three of them for now.
+
+The first thing we are doing is importing React into our project (makes sense, right?). The next thing we import is "ReactDOM". ReactDOM is the glue that holds our React project and the DOM together. We use the ReactDOM to render our application and tell it where to insert itself in the DOM.
+
+In our ReactDOM statement above you can see that we call :
+
+```js
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+This is essentially saying we want to use our `<App />` and insert it into the HTML page at the element with an ID of `root`. We already looked at our HTML and saw the `<div id="root">` tag in the body of that document. ReactDOM will render that `<App />` tag inside of that `<div>`.
+
+The last piece is the importing of our App, from the 'src/App.js' file. This allows us to call it inside of the index.js and render it using ReactDOM.
+
+#### src/App.js
+
+The final piece of the puzzle is the App.js file. This is where the beginnings of the magical world of React will take place for us. Our App.js file has been set up with a bit of stuff already included - so let's examine that and see what we need and what we will have to change to get started.
+
+```js
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
+        </div>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
+
+We are familiar with classes and extending, as well as importing, so none of this should be too weird, but let's break it down so we can get started.
+
+At the top we import React, and the Component library from React in the first statement `import React, { Component } from 'react';`. We also import a logo, that we don't care about at this point, as well as our style sheet, which we are not concerned with either.
+
+The first thing we have is a `class` called `App` that extends (inherits) from the React.Component library. We call a render method on that component, and return some funky looking stuff called JSX.
+
+* One of the big things with these return statements is that a component can only render one div, or piece of JSX. Everything must be contained within that one div. Therefore something along the lines of
+
+```js
+return (
+  <div></div>
+  <div></div>
+)
+```
+
+**Would be invalid!!!** It all needs to be in one container.
+
+For what we are after, we can go ahead and delete everything so we are left with the following:
+
+```js
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
+
+Since we are writing in JavaScript (JSX), reserved words such as `class` can not be used, so if we want to give a class name to our JSX tags, they must be camelCased into `className`.
+
+In general any HTML attributes will be camelCased in JSX.
+
+The HTML `for` attribute is also a reserved word in JavaScript, so it becomes `htmlFor`.
+
+Also, any normally single line tags, such as `<img >` and `<input >` must become self closing tags in JSX. In fact all tags must have a closing tag or be self closing. The two examples above would now be written as `<img />` and `<input />`. Also, if you think back to our index.js file, you would notice that our `<App />` tag was self closing too!
+
+So, now let's see what our app would like in JSX:
+
+```jsx
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      <nav className="navbar">
+        <h1 className="title">Favorite Murray</h1>
+      </nav>
+      <main className="main-body">
+        <div className="top">
+          <div className="image-one">
+            <img src="https://www.fillmurray.com/200/300" alt="Fill Murray Pictures" />
+          </div>
+          <p className="top-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          </p>
+        </div>
+        <div className="bottom">
+          <div className="image-two">
+            <img src="https://www.fillmurray.com/300/300" alt="Fill Murray Pictures" />
+          </div>
+          <p className="bottom-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          </p>
+        </div>
+      </main>
+      <div className="murrayinator">
+        <h3>What is your favorite Murray Movie?</h3>
+        <form className="murray-form" action="" method="">
+          <label htmlFor="murray-movie">Type your favorite movie here...</label>
+          <input type="text" id="murray-movie" />
+          <button>Submit</button>
+        </form>
+      </div>
+      <div className="answer">
+        <h4 className="murray-display"></h4>
+      </div>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
 
 ### Conclusion
 [Summary of content covered]
