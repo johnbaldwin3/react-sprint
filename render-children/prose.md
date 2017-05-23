@@ -38,11 +38,118 @@ class App extends Component {
 }
 ```
 
-How would `<BaseLayout></BaseLayout>` be able to render any other components that needed to go between the navigation and footer elements inside of it?
+How would `<BaseLayout></BaseLayout>` be able to render any other components that needed to go between (inside of) the navigation and footer elements? The majority of our content is likely to live there, but how?
 
 #### Use props.children !
-In order to pass components into another component that may not know what it's children are going to be, or may render many different children depending on the page, we use `{props.children}`
+In order to pass components *or elements* into another component that may not know what it's children are going to be, or may render many different children depending on the page, we use `{props.children}`
+This allows for a component to render things passed into it, and doesn't require that the component even reside inside of the same script sheet.
+
+Let's take a look at how this works and what this means...
+
+First let's pretend that our `<BaseLayout />` component lives in a file called **baselayout.js**.
+
+```js
+//################## baselayout.js ##############
+
+import React, {Component} from 'react';
+
+export default class BaseLayout extends Component {
+  constructor() {
+    super();
+  }
+  render(){
+      return (
+        <div className="base">
+          <nav className="navbar">
+            <h3>Navigation Bar: A cocktail lounge for coders</h3>
+          </nav>
+
+          {this.props.children}
+
+          <footer>
+            <div className="footer-div">
+              <h5>This is the BaseLayout footer...</h5>
+            </div>
+          </footer>
+        </div>
+
+
+      );
+    }
+  }
+```
+
+So, here is what we've got for our `<BaseLayout>` components. A few things to take note of:
+* We again are reminded that only one container (`<div className="base"> </div>`) may be returned in a component.
+* We see in the portion that would equate to the "body" of the page that we use brackets `{}` and pass in `{this.props.children}`. We use the `constructor()` and `super()` functions in order to receive access to the "props" and the `this` object.
+* Another reminder, We could have written this component as a function:
+
+```js
+function BaseLayout(props) {
+  return (
+    <div className="base">
+      <nav className="navbar">
+        <h3>Navigation Bar: A cocktail lounge for coders</h3>
+      </nav>
+
+      {props.children}
+
+      <footer>
+        <div className="footer-div">
+          <h5>This is the BaseLayout footer...</h5>
+        </div>
+      </footer>
+    </div>
+  );
+}
+```
+
+**If we did write this as a function, we no longer are required to use `this` in front of `props.children`**
+
+Let's also take a look what is going on in our **App.js** page.
+
+```js
+//################ App.js ####################
+
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+//import components
+import BaseLayout from './Components/baselayout';
+
+export default class App extends Component {
+  constructor(props){
+    super(props);
+  }
+  render() {
+    return (
+
+        <BaseLayout>
+          <div className="main">
+            <h4>This is the body!</h4>
+          </div>
+        </BaseLayout>
+
+    )
+  }
+}
+```
+
+* Inside of our `<App />` Component, you can see we pass in `<BaseLayout>` from our import statement as a pair of tags (`<BaseLayout> </BaseLayout>`).
+* Inside of our `<BaseLayout>` tags we are able to pass elements or other components!
+* Our **baselayout.js** file tells the the `<BaseLayout>` component to expect children elements or components because of our `{this.props.children}` statement.
+
+The output you would expect to see from this simple demonstration (plus very minor styling):
+
+![props children](./children.png)
+
+
 ### Conclusion
-[Summary of content covered]
+* We can render child components in React by using `{this.props.children}` or `{props.children}`, depending on if we are creating a `class` or `function`.
+* `{this.props.children}` allows a component to receive other elements or components without really requiring the component to predict which or what will be rendered.
+* We could use our `<BaseLayout>` tags in multiple pages and be able to render relevant material to each page because we are passing the `{this.props.children}` to the portion of the component we wish those children to be rendered in.
+* This flexibility leads to more reusable code and the ability to keep our code DRY!
+
 #### References
-[Resource links]
+[React Components](https://facebook.github.io/react/docs/composition-vs-inheritance.html)
