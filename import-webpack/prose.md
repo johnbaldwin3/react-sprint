@@ -59,7 +59,7 @@ Either one of these works, but by including the brackets in our import we get ac
 We use ReactDOM to render our elements onto the DOM and that import statement should look very familiar. We simply use
 `import ReactDOM from 'react-dom';` and then we are free to use it in our application under the name ReactDOM.
 
-The next import - `import {BrowserRouter, Route, Switch} from 'react-router-dom;'` imports 3 different modules from our React Router Library. We then have access to call these Modules (Components in this case) in our app.js file. We will dive in to React Router soon, so we will explore those more fully when we open up that lesson.
+The next import - `import {BrowserRouter, Route, Switch} from 'react-router-dom;'` imports 3 different modules from our React Router Library. We then have access to call these modules (Components in this case) in our app.js file. We will dive in to React Router soon, so we will explore those more fully when we open up that lesson.
 
 Lastly, we import our style sheet. Very simply `import './styles/main.css'`. We do this because we of the way we designed our project to be bundled in our webpack set up. We can import directly to our root JavaScript file and it will all be bundled together (saving us from linking to it in our HTML).
 
