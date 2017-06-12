@@ -11,13 +11,13 @@ Webpack is one of our "doer" build systems. Webpack was built with an understand
 Let's examine each of these in more detail and then begin to piece our project together from the beginning.
 
 #### Loading Modules
-Webpack using module loading to read the source files of our application and search for the dependencies needed to create our application. This modular set up helps the efficiency of the application and prevents likely errors by making sure our project has what it needs to work.
+Webpack uses module loading to read the source files of our application and search for the dependencies needed to create our application. This modular set up helps the efficiency of the application and prevents likely errors by making sure our project has what it needs to work.
 
 #### Minification of code
-You probably know by now that when you code, you can author some very large documents with many lines of code involved. This wreaks havoc on the efficiency of the program. The way around that issue is called minification. It's a crazy word that simply means to compact the file into the very basic needs without any filler, such as spaces or unnecessary characters within our code. For example if we had a variable in one of our files `var mySuperLongVariableName = "some stuff here"`, webpack would then using a minifying process to compact our code into something that might simple be `var a="some stuff here"` - essentially removing all of the fluff from our coding and making a condensed compact copy of that file.
+You probably know by now that when you code, you can author some very large documents with many lines of code involved. This wreaks havoc on the efficiency of the program. The way around that issue is called minification. It's a crazy word that simply means to compact the file into the very basic needs without any filler, such as spaces or unnecessary characters within our code. For example if we had a variable in one of our files `var mySuperLongVariableName = "some stuff here"`, webpack would then use a minifying process to compact our code into something that might simply be `var a="some stuff here"` - essentially removing all of the fluff from our coding and making a condensed compact copy of that file.
 
 #### Concatenation of Files
-The last major role of webpack is to concatenate our files. Webpack searchs through our source code and combines files into one file so that we don't have to load multiple pages for our application to work. Often this file is called "bundle.js" that represents a bundle of our files that have been modularized and minified as well.
+The last major role of webpack is to concatenate our files. Webpack searches through our source code and combines files into one file so that we don't have to load multiple pages for our application to work. Often this file is called "bundle.js" that represents a bundle of our files that have been modularized and minified as well.
 
 ### Getting started
 So how do we get a project going with webpack? The first step we need to do is go into terminal and use bash to create a new directory for our project. This can be named whatever you wish.
