@@ -10,7 +10,7 @@ We need data - so we have created a simple JSON object in a data file that we wi
 
 ```js
 //############ actors.js (in data folder we created) ###########
-export const actors =  [{
+const actors =  [{
     firstName: "Bill",
     lastName: "Murray",
     suffix: "",
@@ -52,6 +52,8 @@ export const actors =  [{
       imgThumb: "http://i.ebayimg.com/00/s/NTAwWDQ1MA==/z/dPQAAMXQVT9S-z2g/$_3.JPG?set_id=2",
       imgFull:"http://rdjpg.com/300/300"
   }];
+
+  export default actors;
 ```
 
 ### Root JavaScript File Set Up
@@ -134,7 +136,7 @@ import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 //import JSON object
-import * as famousPeople from "./data/actors.js";
+import actors from "./data/actors.js";
 
 export default class PeopleMenu extends Component {
 
@@ -142,7 +144,7 @@ export default class PeopleMenu extends Component {
     //get access to the match object
     let match = this.props.match;
     //map through our JSON object array and create a NavLink for each object inside of the JSON array.
-    let NavPeeps = famousPeople.actors.map((actor)=>{
+    let NavPeeps = actors.map((actor)=>{
       return (
         <div key={actor.id} className={actor.firstName}>
           <NavLink activeClassName="selected" className="navlink" to={`${match.url}/${actor.firstName}`}><img src={actor.imgFull} alt={actor.firstName}/>
@@ -203,7 +205,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 //import our JSON object
-import * as famousPeople from "./data/actors.js";
+import actors from "./data/actors.js";
 
 //import Components
 import Actor from './actor.js';
@@ -217,7 +219,7 @@ export default class ActorInfo extends Component {
     const {actor} = this.props.match.params;
 
     //map through all actors
-    let myPeeps = famousPeople.actors.map((celeb) => {
+    let myPeeps = actors.map((celeb) => {
 
       //if actor matches the name of the URL endpoint, render <Actor>
       if (celeb.firstName === actor) {
@@ -255,7 +257,7 @@ What this allows us to do is to match our dynamically created `<Actor>` componen
 We do that with a simply `if` statement in our render method to make sure we have the right information.
 
 ```js
-let myPeeps = famousPeople.actors.map((celeb) => {
+let myPeeps = actors.map((celeb) => {
 
   //if actor matches the name of the URL endpoint, render <Actor>
   if (celeb.firstName === actor) {
