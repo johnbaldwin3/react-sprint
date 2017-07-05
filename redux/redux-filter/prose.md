@@ -336,10 +336,18 @@ class ToggleFilters extends Component {
   constructor(props){
     super(props);
 
+    //set default UI state for the checkbox next to each radio option
+    this.state = {
+      selectedFilter: "showAll",
+    }
   }
   handleOptionChange = (e) => {
     //pass in the event object and get the value (set to a variable for ease of use)
     let option = e.target.value;
+
+    //set UI state of selectedFilter so the radio button will be checked depending on which option
+    //is selected.
+    this.setState({selectedFilter: option})
 
     //send the state to the action creator 'toggleFilter' which will pass the selectedFilter
     //to the reducer when called upon.
@@ -353,7 +361,7 @@ class ToggleFilters extends Component {
             <input
               className="form-check-input"
               onChange={this.handleOptionChange}
-              checked={this.props.selectedFilter === 'showAll'}
+              checked={this.state.selectedFilter === 'showAll'}
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadioShowAll"
@@ -365,7 +373,7 @@ class ToggleFilters extends Component {
             <input
               className="form-check-input"
               onChange={this.handleOptionChange}
-              checked={this.props.selectedFilter === 'showCompleted'}
+              checked={this.state.selectedFilter === 'showCompleted'}
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadioShowCompleted"
@@ -377,7 +385,7 @@ class ToggleFilters extends Component {
             <input
               className="form-check-input"
               onChange={this.handleOptionChange}
-              checked={this.props.selectedFilter === 'showIncomplete'}
+              checked={this.state.selectedFilter === 'showIncomplete'}
               type="radio"
               name="inlineRadioOptions"
               id="inlineRadioShowIncomplete"
@@ -389,8 +397,7 @@ class ToggleFilters extends Component {
     }
 };
 
-// mapping the application state of selectedFilter to props so we can use it set the value of our checked property to true or false
-//in our radio buttons.
+// mapping the application state of selectedFilter to props so we can use it set the value of our checked off radio property to true or //false and use it to filter our data.
 const mapStateToProps = state => {
   return {
     selectedFilter: state.selectedFilter
@@ -488,6 +495,12 @@ class App extends Component {
 export default App;
 
 ```
+
+Now let's checkout how this all looks on the real application!
+
+**INSERT VIDEO/SCREEN CAST HERE*******************
+**LINK URL: http://screencast-o-matic.com/watch/cbih2bl2Za**
+**INSERT FILE redux-todo-list.mp4**
 
 ### Conclusion
 * We use our action creators to pass our action to our reducers via dispatch inside of the store.
