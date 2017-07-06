@@ -1,0 +1,87 @@
+## Constructor : What's my function?
+
+In programming, we need to be able to write code that is efficient. Template style code can be used to replicate things without having to write detailed code over and over again. In Javascript, we use constructors to do this. It allows us to be efficient with our code.
+
+
+### What is a Constructor?
+
+ A `constructor` is a *function* that is used to create objects. Javascript `Objects` are a way of keeping data contained and well-organized. Objects allow us to group different types of data together into more complex and convenient ways.
+
+ With a constructor, you can define properties and methods on an object, that can be set later. You can think of a constructor as a cookie cutter, in that it allows you to make multiple objects with the same properties and methods.
+
+ #### Instance
+
+ An `object` created by a `constructor` is an instance of that constructor. Where a constructor creates a cookie cutter object, the instance is the concrete occurrence of the object - the actual cookie. *The creation of an instance is called instantiation.*
+
+ Simply put, a constructor is a function that is invoked by using the keyword `new`.
+
+ ##### The `new` keyword
+ By placing the word `new` in front of the constructor name, Javascript recognizes the keyword and creates a constructor.
+ ```js
+ function Car(){};
+
+ var car = new Car();
+ ```
+ ##### `this`
+When using construtors, `this` takes on a special.
+When invoked with `new`, `this` is the object being constructed.
+
+ ```js
+ function Car(){
+  console.log(this);
+ };
+
+ var car = new Car();
+
+ ```
+
+
+ So you'll want to attach the properties to `this` inside the function.
+
+ ##### Properties & Methods
+ All objects have properties and methods on them. Constructors allow you to define these variables. These are then set concretely when the constructor is instantiated.
+
+
+```js
+// Defining the properties on a function:
+function Car(make, model){
+  'use strict';
+  this.make = make;
+  this.model = model;
+}
+
+// Using the Car constructor above, we can instantiate a new object and setting the properties:
+
+var myCar = new Car("Honda", "Civic");
+```
+Note:
+
+- A constructor is always capitalized
+- Always use strict mode
+
+The return value of a constructor is one of two things:
+
+1. If you *don't* return from a constructor, the value is `this`, which is set to an empty object.
+
+2. If you do return from the constructor, then the retrun value is whatever you return from the constructor, as long as it's an `Object`. (otherwise it's `this`)
+
+In the above example, `myCar` has make and model properties since it is created based on the `Car` constructor. Additionally, we can use `prototypes` to connect properties to an object. This will be covered in detail in the following lesson.
+
+Well, my car is kind of boring. Why don't you try instantiating a cooler car below:
+
+```js
+var coolCar =
+```
+
+
+
+### Conclusion
+
+- a function + the `new` keyword equals a constructor
+- in a constructor, `this` is the object being constructed
+- constructors can be used to make multiple objects with the same properties and methods
+- Beware, if you forget the `new` keyword, `this == window`
+
+#### References
+
+[Object Playground](http://www.objectplayground.com/)
