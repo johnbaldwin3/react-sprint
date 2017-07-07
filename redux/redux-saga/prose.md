@@ -3,7 +3,7 @@ One of the main topics we have yet to hit on is a pretty important part of our R
 
 So here is what we went over previously:
 
-![react-redux-workflow](./react-redux-workflow1.jpg)
+![react-redux-workflow1.jpg](https://tiy-learn-content.s3.amazonaws.com/407d42a7-react-redux-workflow1.jpg)
 
 We watched the user create some event that triggered our action creator to pass its action to our dispatcher inside of our store. The dispatcher then delegated the action to the reducers, and the matching reducer then created a new updated state depending on what the action needed. Pretty simple, hopefully!
 
@@ -19,7 +19,7 @@ So, quick recap, middleware basically intercepts the action from dispatch, does 
 ### With that in mind...
 With the newfound knowledge (albeit very basic) of middleware, let's look at revising our workflow! We've updated our little diagram to reflect middleware and where it fits into the puzzle of Redux (and React).
 
-![redux-saga-workflow](./redux-saga-workflow.png)
+![redux-saga-workflow.png](https://tiy-learn-content.s3.amazonaws.com/c2049121-redux-saga-workflow.png)
 
 
 #### Looking at Middleware: Redux-Saga
