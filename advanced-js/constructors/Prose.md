@@ -87,8 +87,8 @@ console.log(newCar.make); //logs Toyota
 ---------
 
 function Car2(){
-  this.make = Toyota;
-  return {make: Subaru};
+  this.make = "Toyota";
+  return {make: "Subaru"};
 }
 
 newCar = new Car2();
